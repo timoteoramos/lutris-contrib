@@ -1,0 +1,25 @@
+name: Tree of Savior (Papaya Play)
+game_slug: tree-of-savior-papaya-play
+version: 1.0
+slug: tree-of-savior-papaya-play
+runner: wine
+
+script:
+  files:
+  - launcher: https://static.papayaplay.com/downloader/Tree_Of_Savior_Launcher_downloader.exe
+  game:
+    prefix: $GAMEDIR
+    exe: $GAMEDIR/drive_c/Program Files (x86)/Papaya Play/TreeOfSavior/release/patch/tos.exe
+  installer:
+  - task:
+      arch: win64
+      description: Creating Wine prefix
+      name: create_prefix
+      prefix: $GAMEDIR
+  - task:
+      arch: win64
+      args: /SILENT
+      description: Installing Tree of Savior...
+      executable: launcher
+      name: wineexec
+      prefix: $GAMEDIR
