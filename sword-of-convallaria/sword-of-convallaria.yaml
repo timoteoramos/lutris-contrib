@@ -1,0 +1,31 @@
+name: "Sword of Convallaria"
+game_slug: "sword-of-convallaria"
+version: "Launcher"
+slug: "sword-of-convallaria"
+runner: "wine"
+
+script:
+  files:
+  - launcher: "https://tap.io/fETxTM6"
+  game:
+    prefix: "$GAMEDIR"
+    exe: "$GAMEDIR/drive_c/Program Files/SwordofConvallaria/SoCLauncher/Launcher.exe"
+  installer:
+  - task:
+      arch: "win64"
+      description: "Creating Wine prefix"
+      name: "create_prefix"
+      prefix: "$GAMEDIR"
+  - task:
+      name: "winetricks"
+      description: "Installing Visual Studio C++ 2015-2019 Redistributable..."
+      app: "vcrun2019"
+      silent: true
+  - task:
+      arch: "win64"
+      description: "Installing Sword of Convallaria..."
+      executable: "launcher"
+      name: "wineexec"
+      prefix: "$GAMEDIR"
+      return_code: 50944
+
