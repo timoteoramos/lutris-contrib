@@ -18,6 +18,11 @@ script:
       prefix: "$GAMEDIR"
   - task:
       name: "winetricks"
+      description: "Installing MS corefonts..."
+      app: "corefonts"
+      silent: true
+  - task:
+      name: "winetricks"
       description: "Installing Visual Studio C++ 2013 Redistributable..."
       app: "vcrun2013"
       silent: true

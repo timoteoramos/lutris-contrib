@@ -22,6 +22,11 @@ script:
       app: "vcrun2019"
       silent: true
   - task:
+      name: "winetricks"
+      description: "Installing MS corefonts..."
+      app: "corefonts"
+      silent: true
+  - task:
       arch: "win64"
       description: "Installing Sword of Convallaria..."
       executable: "launcher"
