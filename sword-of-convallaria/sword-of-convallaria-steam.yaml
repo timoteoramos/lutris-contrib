@@ -1,0 +1,9 @@
+name: "Sword of Convallaria"
+game_slug: "sword-of-convallaria"
+version: "steam"
+slug: "sword-of-convallaria"
+runner: "steam"
+
+script:
+  game:
+    appid: 2526380
