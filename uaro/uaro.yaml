@@ -1,0 +1,26 @@
+name: "UARO"
+game_slug: "uaro"
+version: "latest"
+slug: "uaro"
+runner: "wine"
+
+script:
+  files:
+    - rarfile: "N/A:Select the game file (uaro.rar)"
+  game:
+    prefix: "$GAMEDIR"
+    exe: "$GAMEDIR/drive_c/UARO/Patcher.exe"
+  installer:
+  - task:
+      arch: "win64"
+      description: "Creating Wine prefix"
+      name: "create_prefix"
+      prefix: "$GAMEDIR"
+  - task:
+      name: "winetricks"
+      description: "Installing MS corefonts..."
+      app: "corefonts"
+      silent: true
+  - extract:
+      dst: "$GAMEDIR/drive_c/UARO"
+      file: "rarfile"
