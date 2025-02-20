@@ -1,0 +1,28 @@
+name: "RagnaTales"
+game_slug: "ragnatales"
+version: "latest"
+slug: "ragnatales"
+runner: "wine"
+
+script:
+  files:
+    - zipfile: "https://pixeldrain.com/u/sn6bT88S"
+  game:
+    prefix: "$GAMEDIR"
+    exe: "$GAMEDIR/drive_c/RagnaTales/RagnaTales.exe"
+  installer:
+    - task:
+        arch: "win64"
+        description: "Creating Wine prefix"
+        name: "create_prefix"
+        prefix: "$GAMEDIR"
+    - task:
+        name: "winetricks"
+        description: "Installing MS corefonts..."
+        app: "corefonts"
+        silent: true
+    - extract:
+        dst: "$GAMEDIR/drive_c/RagnaTales"
+        file: "zipfile"
+  wine:
+    dgvoodoo2: true
