@@ -1,0 +1,36 @@
+name: "Ragnarok Online LATAM"
+game_slug: "ragnarok-online-latam"
+version: "latest"
+slug: "ragnarok-online-latam"
+runner: "wine"
+
+script:
+  files:
+  - exefile: "https://ro1patch.gnjoylatam.com/LIVE/client/LATAM_SETUP_250409.exe"
+  game:
+    prefix: "$GAMEDIR"
+    exe: "$GAMEDIR/drive_c/Gravity/Ragnarok/Ragnarok.exe"
+  installer:
+  - task:
+      arch: "win64"
+      description: "Creating Wine prefix"
+      name: "create_prefix"
+      prefix: "$GAMEDIR"
+  - task:
+      name: "winetricks"
+      description: "Change the Windows prefix to Windows 7"
+      app: "win7"
+      silent: true
+  - task:
+      arch: "win64"
+      #args: "/s"
+      description: "Installing Ragnarok Online LATAM..."
+      executable: "exefile"
+      name: "wineexec"
+      prefix: "$GAMEDIR"
+  - move:
+      description: "Disable dbghelp.dll"
+      src: "$GAMEDIR/drive_c/Gravity/Ragnarok/dbghelp.dll"
+      dst: "$GAMEDIR/drive_c/Gravity/dbghelp.dll"
+  wine:
+    dgvoodoo2: true
