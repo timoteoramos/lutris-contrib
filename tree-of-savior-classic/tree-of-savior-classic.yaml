@@ -1,0 +1,48 @@
+name: "Tree of Savior Classic"
+game_slug: "tree-of-savior-classic"
+version: "1.2.0"
+slug: "tree-of-savior-classic"
+runner: "wine"
+
+script:
+  files:
+  - launcher: "https://patch.tosclassic.com/launcher/Yufa-Launcher-Setup-1.2.0.exe"
+  game:
+    prefix: "$GAMEDIR"
+    exe: "$GAMEDIR/drive_c/Hyped Games/ToS Classic/release/Yuka.exe"
+  installer:
+  - extract:
+      dst: "$GAMEDIR/drive_c/ProgramData/YufaLauncher"
+      file: "launcher"
+      format: "7z"
+  - task:
+      arch: "win64"
+      description: "Creating Wine prefix"
+      name: "create_prefix"
+      prefix: "$GAMEDIR"
+  - task:
+      name: "winetricks"
+      description: "Installing MS corefonts..."
+      app: "corefonts"
+      silent: true
+  - task:
+      name: "winetricks"
+      description: "Installing Visual Studio C++ 2010 Redistributable..."
+      app: "vcrun2010"
+      silent: true
+  - task:
+      name: "winetricks"
+      description: "Installing Visual Studio C++ 2013 Redistributable..."
+      app: "vcrun2013"
+      silent: true
+  #- task:
+  #    name: "winetricks"
+  #    description: "Installing Visual Studio C++ 2015-2022 Redistributable..."
+  #    app: "vcrun2022"
+  #    silent: true
+  - task:
+      arch: "win64"
+      description: "Installing Tree of Savior Classic..."
+      executable: "$GAMEDIR/drive_c/ProgramData/YufaLauncher/Yufa Launcher.exe"
+      name: "wineexec"
+      prefix: "$GAMEDIR"
