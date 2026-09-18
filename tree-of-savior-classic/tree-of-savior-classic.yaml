@@ -1,18 +1,18 @@
 name: "Tree of Savior Classic"
 game_slug: "tree-of-savior-classic"
-version: "1.2.0"
+version: "Launcher 1.3.1"
 slug: "tree-of-savior-classic"
 runner: "wine"
 
 script:
   files:
-  - launcher: "https://patch.tosclassic.com/launcher/Yufa-Launcher-Setup-1.2.0.exe"
+  - launcher: "https://patch.tosclassic.com/launcher/Yufa-Launcher-Setup-1.3.1.exe"
   game:
     prefix: "$GAMEDIR"
-    exe: "$GAMEDIR/drive_c/Hyped Games/ToS Classic/release/Yuka.exe"
+    exe: "$GAMEDIR/drive_c/ProgramData/Yufa Launcher/Yufa Launcher.exe"
   installer:
   - extract:
-      dst: "$GAMEDIR/drive_c/ProgramData/YufaLauncher"
+      dst: "$GAMEDIR/drive_c/ProgramData/Yufa Launcher"
       file: "launcher"
       format: "7z"
   - task:
@@ -35,14 +35,3 @@ script:
       description: "Installing Visual Studio C++ 2013 Redistributable..."
       app: "vcrun2013"
       silent: true
-  #- task:
-  #    name: "winetricks"
-  #    description: "Installing Visual Studio C++ 2015-2022 Redistributable..."
-  #    app: "vcrun2022"
-  #    silent: true
-  - task:
-      arch: "win64"
-      description: "Installing Tree of Savior Classic..."
-      executable: "$GAMEDIR/drive_c/ProgramData/YufaLauncher/Yufa Launcher.exe"
-      name: "wineexec"
-      prefix: "$GAMEDIR"
